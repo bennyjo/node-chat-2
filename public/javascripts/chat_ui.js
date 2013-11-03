@@ -66,4 +66,15 @@ $(document).ready(function() {
 			$('#send-message').focus();
 		});
 	});
+
+	setInterval(function() {
+		socket.emit('rooms');
+	}, 1000);
+
+	$('#send-message').focus();
+
+	$('#send-form').submit(function() {
+		processUserInput(chatApp, socket);
+		return false;
+	});
 });
