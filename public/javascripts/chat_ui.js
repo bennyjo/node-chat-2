@@ -41,5 +41,8 @@ $(document).ready(function() {
 		$('#messages').append(divSystemContentElement(message));
 	});
 
-	
+	socket.on('joinResult', function(result) {
+		$('#room').text(result.room);
+		$('#messages').append(divSystemContentElement('Room changed.'));
+	});
 });
