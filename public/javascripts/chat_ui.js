@@ -50,4 +50,20 @@ $(document).ready(function() {
 		var newElement = $('<div></div>').text(message.text);
 		$('#messages').append(newElement);
 	});
+
+	socket.on('rooms', function(rooms) {
+		$('#room-list').empty();
+
+		rooms.forEach(function(room) {
+			room = room.substring(1, room.length);
+			if (room !== '') {
+				$('#room-list').append(divSystemContentElement(room));
+			}
+		});
+
+		$('#room-list div').click(function() {
+			chatApp.processCommand('/join' + $(this).text());
+			$('#send-message').focus();
+		});
+	});
 });
