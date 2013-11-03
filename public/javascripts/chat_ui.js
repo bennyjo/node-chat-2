@@ -54,17 +54,18 @@ $(document).ready(function() {
 	socket.on('rooms', function(rooms) {
 		$('#room-list').empty();
 
-		rooms.forEach(function(room) {
+		for (var room in rooms) {
 			room = room.substring(1, room.length);
 			if (room !== '') {
 				$('#room-list').append(divSystemContentElement(room));
 			}
-		});
+		}
+	});
 
-		$('#room-list div').click(function() {
-			chatApp.processCommand('/join' + $(this).text());
-			$('#send-message').focus();
-		});
+	$('#room-list').on('click', 'div', function() {
+
+		chatApp.processCommand('/join ' + $(this).text());
+		$('#send-message').focus();
 	});
 
 	setInterval(function() {
