@@ -1,2 +1,5 @@
+*.pyc
 .DS_Store
+/public
+fabfile.py
 /node_modules
